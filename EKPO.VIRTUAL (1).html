@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EKPO.VIRTUAL</title>
+<style>
+:root{--bg:#060a14;--gl:rgba(255,255,255,.06);--bd:rgba(255,255,255,.12);--tx:#f2f6ff;--mut:#9aa8c4;--g1:#19f5a0;--g2:#00c8ff;--g3:#8a5cff;--pk:#ff5ca8;--me:rgba(25,245,160,.16);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--tx);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(88px + env(safe-area-inset-bottom,0px));overflow-x:hidden}
+body::before,body::after{content:"";position:fixed;width:340px;height:340px;border-radius:50%;filter:blur(90px);opacity:.45;z-index:-1;animation:fl 14s ease-in-out infinite alternate}
+body::before{background:var(--g3);top:-90px;left:-100px}body::after{background:var(--g2);bottom:-110px;right:-110px;animation-delay:-6s;opacity:.3}
+@keyframes fl{to{transform:translate(70px,60px) scale(1.2)}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(25,245,160,.7)}100%{box-shadow:0 0 0 10px rgba(25,245,160,0)}}
+@keyframes sh{to{background-position:200% 0}}
+.w{max-width:640px;margin:0 auto;padding:14px 16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.logo{font-weight:900;font-size:20px;letter-spacing:.5px}.logo b{background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 8px rgba(25,245,160,.6))}
+.chip{display:flex;align-items:center;gap:8px;background:var(--gl);border:1px solid var(--bd);border-radius:99px;padding:8px 14px;color:var(--tx);font:inherit;font-weight:700;cursor:pointer;backdrop-filter:blur(12px)}
+.dot,.live{width:9px;height:9px;border-radius:50%;background:var(--g1);animation:pl 1.6s infinite;display:inline-block}
+.hero{margin:16px 0;padding:22px;border-radius:22px;background:linear-gradient(135deg,rgba(138,92,255,.35),rgba(0,200,255,.18) 60%,rgba(25,245,160,.22));border:1px solid var(--bd);animation:up .6s both}
+h1{font-size:28px;line-height:1.15;margin:0 0 6px;font-weight:900}h1 em{font-style:normal;background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g1));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 5s linear infinite}
+h2{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--mut);margin:20px 0 8px;font-weight:700}
+.s{color:var(--mut);margin:0}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.chips span{font-size:12px;background:rgba(0,0,0,.3);border:1px solid var(--bd);border-radius:99px;padding:4px 10px}
+.tabs{display:flex;gap:6px;background:var(--gl);border:1px solid var(--bd);border-radius:16px;padding:5px;margin:14px 0}
+.tab{flex:1;padding:11px;border-radius:12px;border:0;background:none;color:var(--mut);font:inherit;font-weight:700;cursor:pointer;transition:.25s}
+.tab.on{background:linear-gradient(135deg,var(--g1),var(--g2));color:#03140c;box-shadow:0 0 22px rgba(25,245,160,.5)}
+.btn{padding:11px 16px;border-radius:12px;border:1px solid var(--bd);background:var(--gl);color:var(--tx);font:inherit;font-weight:700;cursor:pointer;transition:.2s}
+.btn:active,.it:active{transform:scale(.96)}
+.btn.p{background:linear-gradient(135deg,var(--g1),var(--g2));color:#03140c;border:0;box-shadow:0 0 18px rgba(25,245,160,.45)}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px}
+.it{background:var(--gl);border:1px solid var(--bd);border-radius:16px;padding:12px;cursor:pointer;text-align:left;color:var(--tx);font:inherit;backdrop-filter:blur(10px);transition:.25s;animation:up .5s both}
+.it:hover{transform:translateY(-3px)}.it.on{border-color:var(--g1);box-shadow:0 0 0 1.5px var(--g1),0 0 26px rgba(25,245,160,.35)}
+.it svg{display:block;margin-bottom:8px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}.it small{display:block;color:var(--mut)}
+.pr{font-weight:800;color:var(--g1)}
+.row{display:flex;align-items:center;gap:12px;background:var(--gl);border:1px solid var(--bd);border-radius:16px;padding:12px;margin-bottom:10px;backdrop-filter:blur(10px);animation:up .5s both}
+.row>div{flex:1;min-width:0}.row b{display:block}.row small{color:var(--mut)}
+.bal{border-radius:24px;padding:24px;margin:14px 0;background:linear-gradient(135deg,#8a5cff,#00c8ff 55%,#19f5a0);color:#04101a;box-shadow:0 10px 50px rgba(0,200,255,.35);animation:up .6s both}
+.bal small{opacity:.75;font-weight:600}.bal div{font-size:38px;font-weight:900}
+input{width:100%;background:var(--gl);color:var(--tx);border:1px solid var(--bd);border-radius:12px;padding:12px;font:inherit}
+select{background:var(--gl);color:var(--tx);border:1px solid var(--bd);border-radius:12px;padding:10px;font:inherit}option{color:#000}
+.flex{display:flex;gap:8px;margin:8px 0}.flex .btn{flex:1}
+nav{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:620px;margin:0 auto;background:rgba(14,20,36,.78);border:1px solid var(--bd);border-radius:24px;display:flex;backdrop-filter:blur(18px);z-index:5;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+nav button{flex:1;background:none;border:0;color:var(--mut);padding:10px 2px;font:inherit;font-size:11px;cursor:pointer}
+nav button span{display:block;font-size:20px;transition:.25s}nav button.on{color:var(--g1);font-weight:800}nav button.on span{transform:translateY(-3px) scale(1.2);filter:drop-shadow(0 0 8px var(--g1))}
+.m{position:fixed;inset:0;background:rgba(2,5,12,.7);backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;z-index:9}
+.m.on{display:flex}.box{background:#0d1424;width:100%;max-width:640px;border-radius:26px 26px 0 0;padding:22px;border:1px solid var(--bd);box-shadow:0 -10px 60px rgba(25,245,160,.2);animation:up .35s both}
+.num{font-size:24px;font-weight:900;margin:8px 0}.code{font-size:34px;font-weight:900;letter-spacing:6px;color:var(--g1);text-shadow:0 0 18px rgba(25,245,160,.7)}
+.bub{max-width:80%;padding:8px 12px;border-radius:16px;margin:4px 0;background:var(--gl);border:1px solid var(--bd)}.bub.me{margin-left:auto;background:var(--me)}
+.chat{max-height:42vh;overflow-y:auto}
+#toast{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:#fff;color:#06101c;padding:10px 16px;border-radius:12px;z-index:20;display:none;max-width:90%;font-weight:600}
+.note{font-size:13px;color:var(--mut)}.ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--gl);flex:0 0 40px;font-size:18px}
+.tg{display:inline-block;font-size:11px;font-weight:800;border-radius:99px;padding:3px 10px;background:rgba(25,245,160,.15);color:var(--g1);border:1px solid rgba(25,245,160,.4)}
+.tg.Waiting{background:rgba(255,92,168,.12);color:var(--pk);border-color:rgba(255,92,168,.4)}
+.rc{background:var(--gl);border:1px solid var(--bd);border-radius:18px;margin-top:14px;overflow:hidden}
+.rc>div{display:flex;justify-content:space-between;gap:12px;padding:13px 14px;border-bottom:1px solid var(--bd);align-items:center}.rc>div:last-child{border:0}
+.rc span{color:var(--mut)}.rc b{text-align:right;word-break:break-all}.rc b.ok{color:var(--g1)}
+.cp{background:none;border:0;cursor:pointer;font-size:14px;padding:0 0 0 6px}
+.fab{position:fixed;right:14px;bottom:calc(96px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--g1),var(--g2));font-size:26px;cursor:pointer;z-index:6;box-shadow:0 0 26px rgba(25,245,160,.6);animation:pl 2s infinite}
+.tz{position:fixed;right:80px;bottom:calc(108px + env(safe-area-inset-bottom,0px));background:#fff;color:#06101c;padding:8px 12px;border-radius:14px 14px 4px 14px;font-size:13px;font-weight:600;z-index:6;max-width:190px;animation:up .4s both}
+.ap{position:fixed;right:12px;left:12px;max-width:380px;margin-left:auto;bottom:calc(96px + env(safe-area-inset-bottom,0px));height:min(540px,72vh);background:#0d1424;border:1px solid var(--bd);border-radius:22px;z-index:8;display:none;flex-direction:column;box-shadow:0 10px 60px rgba(0,0,0,.6);overflow:hidden}
+.ap.on{display:flex}.ah{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--bd)}
+.am{flex:1;overflow-y:auto;padding:10px 12px}.aq{display:flex;gap:6px;flex-wrap:wrap;padding:0 12px 8px}
+.aq button{font-size:12px;padding:6px 10px;border-radius:99px;border:1px solid var(--bd);background:var(--gl);color:var(--tx);cursor:pointer}
+.af{display:flex;gap:6px;padding:8px 10px}a.row{display:flex}nav button{font-size:10px}
+</style></head><body>
+<div class="w"><header><div class="logo">EKPO<b>.VIRTUAL</b></div><div id="wc"></div></header><main id="v"></main></div>
+<nav id="nav"></nav><div id="toast"></div>
+<div class="m" id="m"><div class="box"><div id="ml"></div><div class="num" id="mn"></div><div id="ms" class="s"></div><div class="code" id="mc"></div>
+<div class="flex"><button class="btn" id="nc"></button><button class="btn p" data-act="close">Done</button></div></div></div>
+<script>
+var CUR={NG:{n:"Nigeria",f:"🇳🇬",c:"NGN",r:1,l:"en-NG"},ZA:{n:"South Africa",f:"🇿🇦",c:"ZAR",r:.012,l:"en-ZA"},GH:{n:"Ghana",f:"🇬🇭",c:"GHS",r:.0075,l:"en-GH"},KE:{n:"Kenya",f:"🇰🇪",c:"KES",r:.086,l:"en-KE"},EG:{n:"Egypt",f:"🇪🇬",c:"EGP",r:.033,l:"en-EG"}};
+var TZ={"Africa/Lagos":"NG","Africa/Johannesburg":"ZA","Africa/Accra":"GH","Africa/Nairobi":"KE","Africa/Cairo":"EG"};
+var TT='M12.5 5.5v9a2.6 2.6 0 1 1-2.6-2.6M12.5 5.5c.3 1.8 1.5 3 3.5 3.2';
+var LG=['<rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 5.2a6.8 6.8 0 0 0-5.8 10.3L5.3 19l3.6-.9A6.8 6.8 0 1 0 12 5.2z" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M9.6 9c.3-.5.7-.4 1 .2l.5 1c.1.3-.4.9-.5 1.1.5 1 1.3 1.7 2.3 2.2.2-.2.7-.8 1-.7l1 .5c.5.3.5.7.1 1.2-.6.7-1.6.8-3 .1-1.7-.9-3-2.3-3.3-4-.1-.6.1-1.1.9-1.6z" fill="#fff"/>',
+'<rect width="24" height="24" rx="6" fill="#2AABEE"/><path d="M5 11.6l12.8-5c.6-.2 1.1.1.9 1l-2.2 10.2c-.2.7-.6.9-1.2.6l-3.300-2.400-1.600 1.500c-.2.2-.3.3-.7.3l.3-3.400 6.100-5.500c.3-.2-.1-.4-.4-.2l-7.500 4.700-3.200-1c-.7-.2-.7-.7.1-1z" fill="#fff"/>',
+'<rect width="24" height="24" rx="6" fill="#1877F2"/><path d="M13.400 20v-6.600h2.200l.4-2.700h-2.600V9c0-.8.300-1.300 1.400-1.300H16V5.300c-.3 0-1.100-.1-2-.1-2.100 0-3.500 1.200-3.500 3.500v2H8.200v2.700h2.300V20z" fill="#fff"/>',
+'<rect width="24" height="24" rx="6" fill="#000" stroke="#ffffff55"/><path d="M6 5.500l12 13M18 5.500L6 18.500" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
+'<defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".4" stop-color="#fa7e1e"/><stop offset=".7" stop-color="#d62976"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig)"/><rect x="5.500" y="5.500" width="13" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="3.100" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="16" cy="8" r="1" fill="#fff"/>',
+'<rect width="24" height="24" rx="6" fill="#fff"/><g fill="none" stroke-width="3"><path d="M18.500 8.500A7 7 0 0 0 6 10" stroke="#EA4335"/><path d="M6 10a7 7 0 0 0 .5 6" stroke="#FBBC05"/><path d="M6.500 16a7 7 0 0 0 10.500 1" stroke="#34A853"/><path d="M17 17a7 7 0 0 0 1.600-5H12" stroke="#4285F4"/></g>',
+'<rect width="24" height="24" rx="6" fill="#010101" stroke="#ffffff33"/><g fill="none" stroke-width="1.8" stroke-linecap="round"><path d="'+TT+'" stroke="#25F4EE" transform="translate(-.7 -.5)"/><path d="'+TT+'" stroke="#FE2C55" transform="translate(.7 .5)"/><path d="'+TT+'" stroke="#fff"/></g>',
+'<rect width="24" height="24" rx="6" fill="#FFFC00"/><path d="M12 5.5c-2 0-3.2 1.5-3.2 3.3v1.6c-.5.2-1.200.1-1.600.1.1.6.8.8 1.400 1-.3.9-1.200 1.500-2 1.800.3.6 1.300.5 1.700.8.2.4-.1.8.9.8.7 0 1.100.6 2.800.6s2.100-.6 2.800-.6c1 0 .7-.4.9-.8.4-.3 1.400-.2 1.700-.8-.8-.3-1.700-.9-2-1.800.6-.2 1.300-.4 1.400-1-.4 0-1.100.1-1.600-.1V8.800C15.200 7 14 5.500 12 5.500z" fill="#fff" stroke="#111" stroke-width=".9"/>',
+'<rect width="24" height="24" rx="6" fill="#6d5dfc"/><g fill="#fff"><rect x="6" y="6" width="5" height="5" rx="1.500"/><rect x="13" y="6" width="5" height="5" rx="1.500"/><rect x="6" y="13" width="5" height="5" rx="1.500"/><rect x="13" y="13" width="5" height="5" rx="1.500"/></g>'];
+function logo(i,s){return'<svg viewBox="0 0 24 24" width="'+s+'" height="'+s+'" aria-hidden="true">'+LG[i]+"</svg>"}
+var APPS=["WhatsApp","Telegram","Facebook","X (Twitter)","Instagram","Google / Email","TikTok","Snapchat","Other apps"];
+var NUMS=[["United States","🇺🇸","+1",650,2600],["United Kingdom","🇬🇧","+44",600,2900],["Canada","🇨🇦","+1",550,2400],["Germany","🇩🇪","+49",500,2700],["France","🇫🇷","+33",500,2500],["India","🇮🇳","+91",450,1800],["Indonesia","🇮🇩","+62",450,1700],["Brazil","🇧🇷","+55",500,2000]];
+var MARK=400,RETRY=100,$=function(i){return document.getElementById(i)};
+function load(){try{return JSON.parse(localStorage.getItem("ekpo"))}catch(e){return null}}
+function save(){try{localStorage.setItem("ekpo",JSON.stringify(S))}catch(e){}}
+var S=load()||{bal:5000,tx:[],nums:[]};S.otps=S.otps||[];
+var st={p:"home",t:"otp",app:null,ci:null,cur:"NG",nv:null,tab:"chat",cc:null,mo:null};
+/* Passive region detection (timezone, then language). Swap for IP lookup on your backend. */
+try{var z=Intl.DateTimeFormat().resolvedOptions().timeZone;if(TZ[z])st.cur=TZ[z];else{var m=(navigator.language||"").split("-")[1];if(CUR[m])st.cur=m}}catch(e){}
+function money(n){var c=CUR[st.cur],v=n*c.r;return new Intl.NumberFormat(c.l,{style:"currency",currency:c.c,maximumFractionDigits:v<10?2:0}).format(v)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function price(i){return st.t==="otp"?NUMS[i][3]:NUMS[i][4]+MARK}
+function rnd(n){var s="";for(var i=0;i<n;i++)s+=Math.floor(Math.random()*10);return s}
+function toast(t){var e=$("toast");e.textContent=t;e.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(function(){e.style.display="none"},2600)}
+var AV={};
+function avail(ci){if(!AV[ci]){var a=[],s=ci*977+13;for(var i=0;i<6;i++){s=(s*9301+49297)%233280;var d=("0000000000"+s*7).slice(-10);a.push(NUMS[ci][2]+" "+d.slice(0,3)+" "+d.slice(3,6)+" "+d.slice(6))}AV[ci]=a}return AV[ci]}
+function pay(a,l){if(S.bal<a){$("m").classList.remove("on");toast("Not enough balance. Deposit first.");st.p="wallet";render();return false}S.bal-=a;S.tx.unshift({l:l,a:-a,d:new Date().toLocaleString([],{dateStyle:"medium",timeStyle:"short"})});save();return true}
+function getNum(){return S.nums.filter(function(n){return n.id===st.nv})[0]}
+function otp(id){return S.otps.filter(function(o){return o.id===id})[0]}
+/* ---------- views ---------- */
+function home(){
+ var h='<div class="hero"><h1>Foreign numbers,<br><em>in seconds.</em></h1><p class="s">Verify any app or rent a number for chats and calls.</p><div class="chips"><span>⚡ Instant codes</span><span>🛡️ Auto-refund</span><span>🌍 8+ countries</span></div></div><div class="tabs"><button class="tab'+(st.t==="otp"?" on":"")+'" data-t="otp">One-time OTP</button><button class="tab'+(st.t==="rent"?" on":"")+'" data-t="rent">Rent a number</button></div>';
+ if(st.t==="otp")h+='<h2>1 · Choose the app</h2><div class="g">'+APPS.map(function(a,i){return'<button class="it'+(st.app===i?" on":"")+'" data-a="'+i+'">'+logo(i,38)+a+"</button>"}).join("")+"</div>";
+ h+='<h2>'+(st.t==="otp"?"2 · ":"")+'Choose the country</h2><div class="g">'+NUMS.map(function(x,i){return'<button class="it'+(st.ci===i?" on":"")+'" data-c="'+i+'"><span style="font-size:26px">'+x[1]+"</span><br>"+x[0]+"<small>"+x[2]+'</small><span class="pr">'+money(price(i))+"</span></button>"}).join("")+"</div>";
+ if(st.ci!==null){var x=NUMS[st.ci];h+="<h2>Available · "+x[1]+" "+x[0]+"</h2>";
+  if(st.t==="otp"&&st.app===null)h+='<p class="note">Pick an app above to buy a number.</p>';
+  h+=avail(st.ci).map(function(n,i){return'<div class="row">'+(st.t==="otp"&&st.app!==null?logo(st.app,36):'<div class="ic" style="flex:0 0 40px">'+x[1]+"</div>")+'<div><b>'+n+'</b><small>'+(st.t==="otp"?(st.app!==null?APPS[st.app]+" · one code":"One-time OTP"):"30-day rental")+'</small></div><button class="btn p" data-buy="'+i+'">'+money(price(st.ci))+"</button></div>"}).join("")}
+ if(st.t==="otp")h+='<p class="note">The code works only for the app you pay for. Extra code on the same number: '+money(RETRY)+'. Auto-refund if no code arrives.</p>';
+ return h}
+function wallet(){
+ return'<h1>Wallet</h1><div class="bal"><small>Available balance</small><div>'+money(S.bal)+'</div></div><h2>Deposit</h2><input id="amt" type="number" inputmode="numeric" placeholder="Amount in '+CUR[st.cur].c+'"><div class="flex">'+[500,1000,2000,5000].map(function(v){return'<button class="btn" data-q="'+v+'">'+money(v)+"</button>"}).join("")+'</div><button class="btn p" style="width:100%" data-act="dep">Deposit funds</button><p class="note">Demo only. Connect Paystack or Flutterwave for real payments.</p>'}
+function hist(){
+ return'<h1>History</h1>'+(S.tx.length?S.tx.map(function(t){return'<div class="row"><div class="ic">'+(t.a>0?"⬆️":"📱")+'</div><div><b>'+esc(t.l)+"</b><small>"+esc(t.d)+'</small></div><span class="pr" style="color:'+(t.a>0?"var(--g1)":"var(--pk)")+'">'+(t.a>0?"+":"−")+money(Math.abs(t.a))+"</span></div>"}).join(""):'<p class="s">No activity yet. Deposits and purchases show up here.</p>')}
+function help(){return'<h1>Help</h1><div class="row"><div><b>How do OTP numbers work?</b><small>Pay once, get a code for the app you chose. Extra codes cost '+money(RETRY)+'.</small></div></div><div class="row"><div><b>How long do rentals last?</b><small>30 days of chats, calls and SMS from the Numbers page.</small></div></div><div class="row"><div><b>No code arrived?</b><small>You get an automatic refund to your wallet.</small></div></div><h2>Region</h2><div class="row"><div><b>Detected automatically</b><small>Prices show in your local currency.</small></div><select id="cur">'+Object.keys(CUR).map(function(k){return'<option value="'+k+'"'+(k===st.cur?" selected":"")+">"+CUR[k].f+" "+CUR[k].c+"</option>"}).join("")+"</select></div>"}
+function otpRow(o){var ok=Date.now()>=o.at,left=Math.ceil((o.exp-Date.now())/6e4);
+ return'<div class="row">'+logo(o.ai,42)+'<div><b>'+o.num+'</b><small>'+APPS[o.ai]+" · "+left+' min left</small>'+(ok?'<div class="code" style="font-size:26px">'+o.code+"</div>":'<small><i class="live"></i> Waiting for code…</small>')+'</div><button class="btn" data-newc="'+o.id+'">+ Code<br><small>'+money(RETRY)+"</small></button></div>"}
+function nums0(){
+ var n=getNum();
+ if(!n){var act=S.otps.filter(function(o){return o.exp>Date.now()});
+  return'<h1>My numbers</h1><h2>Active OTP numbers</h2>'+(act.map(otpRow).join("")||'<p class="note">No active OTP numbers. Buy one from Home.</p>')+'<h2>Rented numbers</h2>'+(S.nums.length?S.nums.map(function(n){var d=Math.max(0,Math.ceil((n.exp-Date.now())/864e5));return'<div class="row"><div class="ic">'+n.f+'</div><div><b>'+n.num+"</b><small>Rental · "+d+' days left</small></div><button class="btn p" data-open="'+n.id+'">Open</button></div>'}).join(""):'<p class="note">No rentals yet. Choose Rent a number on Home.</p>')}
+ var h='<button class="btn" data-act="back">← Back</button><h1>'+n.f+" "+n.num+'</h1><div class="tabs">'+[["chat","💬 Chats"],["call","📞 Calls"],["sms","📩 Inbox"]].map(function(t){return'<button class="tab'+(st.tab===t[0]?" on":"")+'" data-tab="'+t[0]+'">'+t[1]+"</button>"}).join("")+"</div>";
+ if(st.tab==="chat"){
+  var c=n.contacts.filter(function(c){return c.id===st.cc})[0];
+  if(c)h+='<button class="btn" data-act="cback">← Contacts</button><h2>'+esc(c.name)+" · "+esc(c.tel)+'</h2><div class="chat" id="chat">'+(c.msgs.map(function(m){return'<div class="bub'+(m.me?" me":"")+'">'+esc(m.t)+"</div>"}).join("")||'<p class="note">Say hello.</p>')+'</div><div class="flex"><input id="msg" placeholder="Type a message"><button class="btn p" style="flex:0 0 auto" data-act="send">Send</button></div>';
+  else h+='<h2>Add a number to chat with</h2><input id="ctn" placeholder="Name" style="margin-bottom:8px"><div class="flex"><input id="ctt" placeholder="+1 555 123 4567" inputmode="tel"><button class="btn p" style="flex:0 0 auto" data-act="addc">Add</button></div><h2>Contacts</h2>'+(n.contacts.map(function(c){return'<div class="row"><div><b>'+esc(c.name)+"</b><small>"+esc(c.tel)+'</small></div><button class="btn" data-cc="'+c.id+'">Chat</button></div>'}).join("")||'<p class="note">No contacts yet.</p>')}
+ if(st.tab==="call")h+='<div class="flex"><input id="dial" placeholder="Number to call" inputmode="tel"><button class="btn p" style="flex:0 0 auto" data-act="dialgo">Call</button></div><h2>Call log</h2>'+(n.calls.map(function(c){return'<div class="row"><div class="ic">📞</div><div><b>'+esc(c.to)+"</b><small>"+c.d+" · "+c.dur+"</small></div></div>"}).join("")||'<p class="note">No calls yet.</p>');
+ if(st.tab==="sms")h+='<button class="btn" data-act="sim">Simulate incoming SMS (demo)</button><h2>Messages</h2>'+(n.sms.map(function(s){return'<div class="row"><div><b>'+esc(s.from)+"</b><small>"+esc(s.t)+"</small></div></div>"}).join("")||'<p class="note">Incoming SMS will appear here.</p>');
+ return h}
+function render(){
+ $("wc").innerHTML='<button class="chip" data-p="wallet" aria-label="Open wallet"><i class="dot"></i>'+money(S.bal)+"</button>";
+ $("v").innerHTML={home:home,wallet:wallet,nums:nums,hist:hist,help:help}[st.p]();
+ $("nav").innerHTML=[["home","🏠","Home"],["nums","📱","Numbers"],["wallet","💰","Wallet"],["hist","🕘","History"],["help","❓","Help"]].map(function(b){return'<button class="'+(st.p===b[0]?"on":"")+'" data-p="'+b[0]+'"><span>'+b[1]+"</span>"+b[2]+"</button>"}).join("");
+ var c=$("chat");if(c)c.scrollTop=c.scrollHeight}
+/* ---------- actions ---------- */
+function mrender(){var o=otp(st.mo);if(!o)return;var ok=Date.now()>=o.at;$("ml").innerHTML=logo(o.ai,54);$("mn").textContent=o.num;$("ms").textContent=ok?"Code received":"Waiting for "+APPS[o.ai]+" code…";$("mc").textContent=ok?o.code:"• • • • • •";$("nc").dataset.newc=o.id;$("nc").textContent="Another code · "+money(RETRY)}
+function sched(o){setTimeout(function(){render();if($("m").classList.contains("on"))mrender()},Math.max(0,o.at-Date.now())+80)}
+S.otps.forEach(function(o){if(o.at>Date.now())sched(o)});
+function buy(i){
+ var x=NUMS[st.ci],num=avail(st.ci)[i];
+ if(st.t==="otp"){if(st.app===null){toast("Pick an app first");return}
+  if(!pay(x[3],"OTP · "+APPS[st.app]+" · "+x[1]))return;AV[st.ci].splice(i,1);
+  var o={id:"o"+Date.now(),num:num,ai:st.app,at:Date.now()+3500,code:rnd(6),exp:Date.now()+20*6e4};S.otps.unshift(o);save();st.mo=o.id;$("m").classList.add("on");mrender();sched(o);render()}
+ else{if(!pay(x[4]+MARK,"Rental · "+x[0]+" "+x[2]))return;AV[st.ci].splice(i,1);
+  var n={id:"n"+Date.now(),num:num,f:x[1],exp:Date.now()+30*864e5,contacts:[],calls:[],sms:[]};S.nums.unshift(n);save();
+  st.p="nums";st.nv=n.id;st.tab="chat";st.cc=null;toast("Number rented. Open it any time from Numbers.");render()}}
+function newc(id){var o=otp(id);if(!o||!pay(RETRY,"Extra code · "+APPS[o.ai]))return;o.at=Date.now()+3500;o.code=rnd(6);o.exp=Math.max(o.exp,Date.now()+20*6e4);save();sched(o);render();if($("m").classList.contains("on"))mrender()}
+document.addEventListener("click",function(e){
+ var t=e.target.closest("button");if(!t)return;var d=t.dataset,n=getNum();
+ if(d.p){st.p=d.p;st.nv=null;st.cc=null;render();scrollTo(0,0)}else if(d.rc){$("m").classList.remove("on");st.p="rcpt";st.r=d.rc;render();scrollTo(0,0)}else if(d.go){st.p=d.go;render();scrollTo(0,0)}else if(d.reo)reorder(d.reo);else if(d.cp)copy(d.cp);else if(d.au)auth(d.au);else if(d.lo){S.user=null;save();st.p="land";render()}
+ else if(d.t){st.t=d.t;st.ci=null;render()}
+ else if(d.a){st.app=+d.a;render()}
+ else if(d.c){st.ci=+d.c;render()}
+ else if(d.buy)buy(+d.buy);
+ else if(d.newc)newc(d.newc);
+ else if(d.q){$("amt").value=Math.round(d.q*CUR[st.cur].r*100)/100}
+ else if(d.open){st.nv=d.open;st.tab="chat";st.cc=null;render()}
+ else if(d.tab){st.tab=d.tab;st.cc=null;render()}
+ else if(d.cc){st.cc=d.cc;render()}
+ else if(d.act==="dep"){var v=parseFloat($("amt").value);if(!(v>0)){toast("Enter an amount");return}var ng=v/CUR[st.cur].r;S.bal+=ng;S.tx.unshift({l:"Deposit",a:ng,d:new Date().toLocaleString([],{dateStyle:"medium",timeStyle:"short"})});save();toast("Deposit added");render()}
+ else if(d.act==="back"){st.nv=null;st.cc=null;render()}
+ else if(d.act==="cback"){st.cc=null;render()}
+ else if(d.act==="close")$("m").classList.remove("on");
+ else if(d.act==="addc"){var nm=$("ctn").value.trim(),tl=$("ctt").value.trim();if(!nm||!tl){toast("Add a name and number");return}n.contacts.push({id:"c"+Date.now(),name:nm,tel:tl,msgs:[]});save();render()}
+ else if(d.act==="send")send();
+ else if(d.act==="dialgo"){var to=$("dial").value.trim();if(!to){toast("Enter a number");return}toast("Calling "+to+"…");setTimeout(function(){var s=10+Math.floor(Math.random()*170);n.calls.unshift({to:to,d:new Date().toLocaleDateString(),dur:Math.floor(s/60)+":"+("0"+s%60).slice(-2)});save();toast("Call ended");render()},2500)}
+ else if(d.act==="sim"){n.sms.unshift({from:APPS[Math.floor(Math.random()*5)],t:"Your code is "+rnd(6)});save();render()}
+});
+function send(){var n=getNum(),c=n.contacts.filter(function(c){return c.id===st.cc})[0],t=$("msg").value.trim();if(!t)return;
+ c.msgs.push({me:1,t:t});save();render();$("msg").focus();
+ setTimeout(function(){c.msgs.push({t:["Hey! Got your message 👋","Nice, tell me more.","Haha, sure."][Math.floor(Math.random()*3)]});save();if(st.cc===c.id)render()},1500)}
+document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.id==="msg")send()});
+/* ===== v3: landing, auth, emails, receipts, history ===== */
+var EMD=[["@ekpomail.com",250,"Regular","🌐"],["@ekpomail.us",300,"USA","🇺🇸"],["@ekpomail.com.br",350,"Brazil","🇧🇷"]];
+S.ord=S.ord||[];S.user=S.user||null;st.am="signup";st.r=null;if(!S.user)st.p="land";
+function nowS(){return new Date().toLocaleString([],{dateStyle:"medium",timeStyle:"short"})}
+function uid(){var h="0123456789abcdef",s="";for(var i=0;i<32;i++)s+=([8,12,16,20].indexOf(i)>-1?"-":"")+h[Math.floor(Math.random()*16)];return s}
+function price(i){return st.t==="otp"?NUMS[i][3]:st.t==="rent"?NUMS[i][4]+MARK:EMD[i][1]}
+function avail(ci,em){var k=(em?"e":"n")+ci;if(!AV[k]){var a=[],s=ci*977+13+(em?5:0);for(var i=0;i<6;i++){s=(s*9301+49297)%233280;if(em){var q="abcdefghjkmnpqrstuvwxyz23456789",u="",r=s;for(var j=0;j<8;j++){u+=q[r%31];r=Math.floor(r/3)+j*7+s%13}a.push(u+EMD[ci][0])}else{var d=("0000000000"+s*7).slice(-10);a.push(NUMS[ci][2]+" "+d.slice(0,3)+" "+d.slice(3,6)+" "+d.slice(6))}}AV[k]=a}return AV[k]}
+function pay(a,l,o){if(S.bal<a){$("m").classList.remove("on");toast("Not enough balance. Deposit first.");st.p="wallet";render();return false}S.bal-=a;S.tx.unshift({l:l,a:-a,d:nowS(),o:o});save();return true}
+function mk(kind,num,ai,cn,base,amt){return{id:"r"+Date.now()+rnd(3),kind:kind,num:num,ai:ai,cn:cn,base:base,amt:amt,at:kind==="rent"?0:Date.now()+3500,code:rnd(5),d:nowS(),tid:uid()}}
+function got(o){return o.kind==="rent"||Date.now()>=o.at}
+function ordr(id){return S.ord.filter(function(o){return o.id===id})[0]}
+function sched(o){if(o.kind==="rent")return;setTimeout(function(){render();if($("m").classList.contains("on"))mrender()},Math.max(0,o.at-Date.now())+80)}
+S.ord.forEach(function(o){if(o.at>Date.now())sched(o)});
+function place(o,l){if(!pay(o.amt,l,o.id))return false;S.ord.unshift(o);save();sched(o);return true}
+function mrender(){var o=ordr(st.mo);if(!o)return;var ok=got(o);$("ml").innerHTML=logo(o.ai,54);$("mn").textContent=o.num;$("ms").textContent=ok?"Code delivered ✓":"Waiting for "+APPS[o.ai]+" code…";$("mc").textContent=ok?o.code:"• • • • •";$("nc").dataset.rc=o.id;$("nc").textContent="View receipt"}
+function buy(i){
+ var T=st.t,em=T==="email",num=avail(st.ci,em)[i],p=price(st.ci);
+ if(T==="rent"){var x=NUMS[st.ci],o=mk("rent",num,null,x[0],p,p);if(!place(o,"Rental · "+x[0]+" "+x[2]))return;AV["n"+st.ci].splice(i,1);
+  var n={id:"n"+Date.now(),num:num,f:x[1],exp:Date.now()+30*864e5,contacts:[],calls:[],sms:[]};S.nums.unshift(n);save();st.p="nums";st.nv=n.id;st.tab="chat";st.cc=null;toast("Number rented. Open it any time from Numbers.");render();return}
+ if(st.app===null){toast("Pick an app first");return}
+ var cn=em?EMD[st.ci][2]:NUMS[st.ci][0],o2=mk(em?"email":"otp",num,st.app,cn,p,p);
+ if(!place(o2,(em?"Email · ":"OTP · ")+APPS[st.app]+" · "+cn))return;
+ AV[(em?"e":"n")+st.ci].splice(i,1);st.mo=o2.id;$("m").classList.add("on");mrender();render()}
+function reorder(id){var o=ordr(id);if(!o)return;var n=mk(o.kind,o.num,o.ai,o.cn,o.base,o.kind==="email"?o.base:Math.round(o.base/2));if(place(n,"Re-request · "+APPS[o.ai]+(o.kind==="email"?"":" · half price")))toast("Requesting a new code…"),render()}
+function copy(v){try{navigator.clipboard.writeText(v).then(function(){toast("Copied")},function(){toast("Copy not available here")})}catch(e){toast("Copy not available here")}}
+function auth(a){
+ if(a==="login"||a==="signup"){st.am=a;st.p="auth";render();scrollTo(0,0);return}
+ var e=($("ae").value||"").trim(),p=$("ap").value,n=st.am==="signup"?($("an").value||"").trim():"";
+ if(e.indexOf("@")<1||p.length<4){toast("Enter a valid email and a password (4+ characters)");return}
+ S.user={e:e,n:n};save();st.p="home";toast("Welcome to EKPO.VIRTUAL");render();scrollTo(0,0)}
+/* views */
+function land(){
+ var mock='<div class="row" style="flex-wrap:wrap">'+logo(0,42)+'<div><b>WhatsApp · USA</b><small>+1 415 555 0132</small></div><span class="tg">Code delivered</span><div style="flex:1 0 100%;text-align:center;background:rgba(0,0,0,.3);border-radius:12px;padding:10px"><small>Your code</small><div class="code">482 913</div></div></div><div class="row">'+logo(1,42)+'<div><b>Telegram · Canada</b><small>No code arrived</small></div><div style="flex:0 0 auto;text-align:right"><b class="pr">+'+money(1300)+'</b><small>Back in wallet</small></div></div>';
+ var L=[["📱","One-time OTP numbers","A real foreign number for the app you pick. Pay only for the code."],["📞","Rent a number","Keep a number for 30 days. Chat, call and receive SMS."],["✉️","Emails for sign-up codes","Fresh inboxes for apps that verify by email."]];
+ return'<div class="hero"><span class="tg">✉️ New: emails for sign-up codes</span><h1 style="margin-top:12px;font-size:34px">Get the code.<br><em>Skip the SIM.</em></h1><p class="s">A phone number or an email for any app’s code. One wallet in your local currency, and you pay only for what is delivered.</p><div class="flex" style="margin:16px 0 10px"><button class="btn p" data-au="signup">Create free account →</button></div>'+["Instant codes from 8+ countries","Refund if it is not delivered","Prices in your own currency"].map(function(c){return'<div class="note">✅ '+c+"</div>"}).join("")+"</div>"+mock+
+ '<h2>Works with</h2><div class="chips" style="gap:10px">'+APPS.map(function(a,i){return logo(i,42)}).join("")+"</div><h2>One wallet, three things to buy</h2>"+L.map(function(l){return'<div class="row"><div class="ic">'+l[0]+"</div><div><b>"+l[1]+"</b><small>"+l[2]+"</small></div></div>"}).join("")+"<h2>How it works</h2>"+["Create your free account","Fund your wallet in your local currency","Pick an app, get the code, done"].map(function(s,i){return'<div class="row"><div class="ic">'+(i+1)+"</div><div><b>"+s+"</b></div></div>"}).join("")+'<button class="btn p" style="width:100%;margin-top:8px" data-au="signup">Get started free →</button><p class="note" style="text-align:center">Already have an account? <button class="btn" data-au="login" style="padding:6px 12px">Log in</button></p>'}
+function authv(){var s=st.am==="signup";return'<h1>'+(s?"Create your account":"Welcome back")+'</h1><p class="s">'+(s?"Start with a free wallet.":"Log in to your wallet.")+"</p>"+(s?'<input id="an" placeholder="Your name" style="margin:14px 0 8px">':'<div style="height:14px"></div>')+'<input id="ae" type="email" placeholder="Email" style="margin-bottom:8px"><input id="ap" type="password" placeholder="Password" style="margin-bottom:14px"><button class="btn p" style="width:100%" data-au="go">'+(s?"Create account":"Log in")+'</button><p class="note" style="text-align:center">'+(s?"Have an account? ":"New here? ")+'<button class="btn" style="padding:6px 12px" data-au="'+(s?"login":"signup")+'">'+(s?"Log in":"Sign up")+"</button></p>"}
+function cd(i,a,b,c){return'<button class="it'+(st.ci===i?" on":"")+'" data-c="'+i+'"><span style="font-size:26px">'+a+"</span><br>"+b+"<small>"+c+'</small><span class="pr">'+money(price(i))+"</span></button>"}
+function home(){
+ var T=st.t,em=T==="email";
+ var h='<div class="hero"><h1>Get the code. <em>Skip the SIM.</em></h1><p class="s">Phone numbers and emails for any app’s code.</p></div><div class="tabs">'+[["otp","📱 OTP"],["email","✉️ Email"],["rent","📞 Rent"]].map(function(t){return'<button class="tab'+(T===t[0]?" on":"")+'" data-t="'+t[0]+'">'+t[1]+"</button>"}).join("")+"</div>";
+ if(T!=="rent")h+='<h2>1 · Choose the app</h2><div class="g">'+APPS.map(function(a,i){return'<button class="it'+(st.app===i?" on":"")+'" data-a="'+i+'">'+logo(i,38)+a+"</button>"}).join("")+"</div>";
+ h+="<h2>"+(T!=="rent"?"2 · ":"")+(em?"Choose the email country":"Choose the country")+'</h2><div class="g">'+(em?EMD.map(function(x,i){return cd(i,x[3],x[2],x[0])}):NUMS.map(function(x,i){return cd(i,x[1],x[0],x[2])})).join("")+"</div>";
+ if(st.ci!==null){var ic=T!=="rent"&&st.app!==null;h+="<h2>Available now</h2>"+(T!=="rent"&&st.app===null?'<p class="note">Pick an app above to buy.</p>':"")+avail(st.ci,em).map(function(n,i){return'<div class="row">'+(ic?logo(st.app,36):'<div class="ic">'+(em?"✉️":NUMS[st.ci][1])+"</div>")+'<div><b style="word-break:break-all">'+n+"</b><small>"+(T==="rent"?"30-day rental":ic?APPS[st.app]+" · one code":"One code")+'</small></div><button class="btn p" data-buy="'+i+'">'+money(price(st.ci))+"</button></div>"}).join("")}
+ return h+'<p class="note">Codes work only for the app you pay for. Numbers can be re-requested at half price from Numbers; emails are paid again for each new code. Auto-refund if no code arrives.</p>'}
+function waitRow(o){return'<div class="row">'+logo(o.ai,42)+'<div><b style="word-break:break-all">'+o.num+"</b><small>"+APPS[o.ai]+' · <i class="live"></i> Waiting for code…</small></div></div>'}
+function list(){
+ var w=[],used=[],seen={};
+ S.ord.forEach(function(o){if(o.kind==="rent"||seen[o.num])return;seen[o.num]=1;(got(o)?used:w).push(o)});
+ return'<h1>My numbers</h1><h2>Waiting for a code</h2>'+(w.map(waitRow).join("")||'<p class="note">Nothing pending.</p>')+"<h2>Rented numbers</h2>"+(S.nums.length?S.nums.map(function(n){var d=Math.max(0,Math.ceil((n.exp-Date.now())/864e5));return'<div class="row"><div class="ic">'+n.f+"</div><div><b>"+n.num+"</b><small>Rental · "+d+' days left</small></div><button class="btn p" data-open="'+n.id+'">Open</button></div>'}).join(""):'<p class="note">No rentals yet.</p>')+'<h2>Used numbers and emails</h2><p class="note">Numbers: another code at half price. Emails: pay again at full price for each new code.</p>'+(used.map(function(o){return'<div class="row">'+logo(o.ai,36)+'<div><b style="word-break:break-all">'+o.num+"</b><small>"+APPS[o.ai]+" · "+esc(o.cn)+'</small></div><button class="btn" data-reo="'+o.id+'">Again · '+money(o.kind==="email"?o.base:Math.round(o.base/2))+"</button></div>"}).join("")||'<p class="note">Numbers that delivered a code show here. Receipts are in History.</p>')}
+function nums(){return getNum()?nums0():list()}
+function hist(){
+ return'<h1>History</h1>'+(S.tx.length?S.tx.map(function(t){var o=t.o&&ordr(t.o),s=o?(o.kind==="rent"?"Fulfilled":got(o)?"Delivered":"Waiting"):"";
+  return'<div class="row">'+(o&&o.ai!==null?logo(o.ai,36):'<div class="ic">'+(t.a>0?"⬆️":"📱")+"</div>")+'<div><b>'+esc(t.l)+"</b><small>"+esc(t.d)+"</small>"+(s?'<br><span class="tg '+s+'">'+s+"</span>":"")+'</div><div style="flex:0 0 auto;text-align:right"><span class="pr" style="color:'+(t.a>0?"var(--g1)":"var(--pk)")+'">'+(t.a>0?"+":"−")+money(Math.abs(t.a))+"</span>"+(o?'<br><button class="btn" style="padding:6px 10px;margin-top:6px;font-size:12px" data-rc="'+o.id+'">Receipt</button>':"")+"</div></div>"}).join(""):'<p class="s">No activity yet. Deposits, codes and receipts show up here.</p>')}
+function rcpt(){
+ var o=ordr(st.r);if(!o)return'<button class="btn" data-go="hist">← History</button>';
+ var rent=o.kind==="rent",ok=got(o),em=o.kind==="email";
+ var rows=[["Type",rent?"Number Rental":em?"Email Purchase":"OTP Purchase"],["Service",o.ai===null?"Rental":APPS[o.ai]],["Country",o.cn],[em?"Email address":"Phone number",o.num,1]];
+ if(!rent)rows.push(["OTP code",ok?o.code:"Waiting…",ok?1:0]);
+ rows.push(["Amount",money(o.amt)],["Status",rent?"FULFILLED":ok?"DELIVERED":"WAITING"],["Date",o.d],["Transaction ID",o.tid,1]);
+ return'<button class="btn" data-go="hist">← History</button><h1>Transaction details</h1>'+(rent?"":'<div class="bal" style="background:#0b1020;border:1px solid var(--bd);text-align:center;color:var(--tx)"><small>OTP CODE</small><div style="color:var(--g1);letter-spacing:8px;text-shadow:0 0 20px rgba(25,245,160,.6)">'+(ok?o.code:"•••••")+"</div>"+(ok?'<button class="btn" data-cp="'+o.code+'">📋 Copy code</button>':"")+"</div>")+'<div class="rc">'+rows.map(function(r){return"<div><span>"+r[0]+"</span><b"+(r[0]==="Status"?' class="ok"':"")+">"+esc(r[1])+(r[2]===1?' <button class="cp" data-cp="'+esc(r[1])+'">📋</button>':"")+"</b></div>"}).join("")+'</div><button class="btn p" style="width:100%;margin-top:14px" data-go="hist">Back to history</button>'}
+function help(){return'<h1>Help</h1>'+[["How do OTP numbers work?","Pay once and get a code for the app you chose. Used numbers can be re-requested at half price."],["Can I rent an email?","Yes. Choose Email on Home, pick the app, then the email country (Regular, USA or Brazil). It works for apps that accept email sign-up. Need another code later? Pay again."],["How long do rentals last?","30 days of chats, calls and SMS from Numbers."],["No code arrived?","You get an automatic refund to your wallet."]].map(function(a){return'<div class="row"><div><b>'+a[0]+"</b><small>"+a[1]+"</small></div></div>"}).join("")+'<h2>Region</h2><div class="row"><div><b>Detected automatically</b><small>Prices show in your local currency.</small></div><select id="cur">'+Object.keys(CUR).map(function(k){return'<option value="'+k+'"'+(k===st.cur?" selected":"")+">"+CUR[k].f+" "+CUR[k].c+"</option>"}).join("")+'</select></div><h2>Account</h2><div class="row"><div><b>'+esc(S.user.n||S.user.e)+"</b><small>"+esc(S.user.e)+'</small></div><button class="btn" data-lo="1">Log out</button></div>'}
+function render(){
+ var u=S.user,p=u?st.p:(st.p==="auth"?"auth":"land");
+ $("wc").innerHTML=u?'<button class="chip" data-p="wallet" aria-label="Open wallet"><i class="dot"></i>'+money(S.bal)+"</button>":'<div class="flex" style="margin:0"><button class="btn" data-au="login">👤 Log in</button><button class="btn p" data-au="signup">✨ Sign up</button></div>';
+ $("v").innerHTML={land:land,auth:authv,home:home,wallet:wallet,nums:nums,hist:hist,rcpt:rcpt,help:help}[p]();
+ var pn=p==="rcpt"?"hist":p;$("nav").style.display=u?"flex":"none";
+ $("nav").innerHTML=[["home","🏠","Home"],["nums","📱","Numbers"],["wallet","💰","Wallet"],["hist","🕘","History"],["help","❓","Help"]].map(function(b){return'<button class="'+(pn===b[0]?"on":"")+'" data-p="'+b[0]+'"><span>'+b[1]+"</span>"+b[2]+"</button>"}).join("");
+ var c=$("chat");if(c)c.scrollTop=c.scrollHeight}
+
+/* ===== v4: support, live chat, referrals ===== */
+var WA="https://wa.me/2349161017526?text="+encodeURIComponent("Hello EKPO.VIRTUAL support, I need help.");
+S.refs=S.refs||[];S.rc=S.rc||("EKPO"+Math.random().toString(36).slice(2,6).toUpperCase());
+try{var rm=(location.hash||"").match(/^#ref-([A-Za-z0-9]+)$/);if(rm){st.pref=rm[1].toUpperCase();if(!S.user){st.p="auth";st.am="signup"}}}catch(e){}
+function base(){try{return location.href.split("#")[0]}catch(e){return"https://ekpo.virtual/"}}
+function supp(){return'<a class="row" style="text-decoration:none;color:inherit" target="_blank" rel="noopener" href="'+WA+'">'+logo(0,40)+'<div><b>Chat with customer support</b><small>09161017526 · opens WhatsApp</small></div><span class="pr">→</span></a>'}
+var _h=home;home=function(){return _h()+'<h2>Earn</h2><div class="row"><div class="ic">💸</div><div><b>Earn 6% from referrals</b><small>Invite friends and earn on everything they spend.</small></div><button class="btn p" data-go="earn">Invite</button></div><h2>Support</h2>'+supp()};
+var _l=land;land=function(){return _l()+"<h2>Need help?</h2>"+supp()};
+var _he=help;help=function(){return _he()+"<h2>Contact support</h2>"+supp()};
+var _a=authv;authv=function(){return(st.pref&&st.am==="signup"?'<div class="row"><div class="ic">🎁</div><div><b>You were invited</b><small>Referral code '+esc(st.pref)+" applied</small></div></div>":"")+_a()};
+var _au=auth;auth=function(a){_au(a);if(a==="go"&&S.user&&!S.user.ref&&st.pref&&st.pref!==S.rc){S.user.ref=st.pref;save();render()}};
+var _pl=place;place=function(o,l){var ok=_pl(o,l);if(ok&&S.user&&S.user.ref){S.owe=S.owe||[];S.owe.push({c:S.user.ref,b:Math.round(o.amt*.06),t:o.id});save()}return ok};
+function earn(){
+ var tot=S.refs.reduce(function(a,r){return a+r.earned},0),link=base()+"#ref-"+S.rc,msg="Get foreign numbers and emails for any app’s code on EKPO.VIRTUAL. Sign up with my link: "+link;
+ return'<h1>Earn with referrals</h1><div class="bal"><small>Total referral earnings</small><div>'+money(tot)+'</div></div><div class="row"><div class="ic">💸</div><div><b>6% of everything they spend</b><small>Anyone who signs up with your link is linked to you. Every purchase they make pays you 6%.</small></div></div><h2>Your referral link</h2><div class="row"><div><b style="word-break:break-all;font-size:14px">'+esc(link)+'</b></div></div><div class="flex"><button class="btn" data-cp="'+esc(link)+'">📋 Copy link</button><a class="btn p" style="text-align:center;text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(msg)+'">Share on WhatsApp</a></div><h2>Your referrals · '+S.refs.length+"</h2>"+(S.refs.map(function(r){return'<div class="row"><div class="ic">👤</div><div><b>'+esc(r.n)+"</b><small>Spent "+money(r.spent)+'</small></div><span class="pr">+'+money(r.earned)+"</span></div>"}).join("")||'<p class="note">No referrals yet. Share your link to start earning.</p>')+(S.user&&S.user.ref?'<div class="row"><div class="ic">🎁</div><div><b>You joined with code '+esc(S.user.ref)+"</b><small>6% of your spending rewards the person who invited you.</small></div></div>":"")+'<button class="btn" style="width:100%;margin-top:8px" data-x="simref">Demo: simulate a referral purchase</button><p class="note">Demo only. Linking accounts and paying the 6% across different users needs the real backend.</p>'}
+function simref(){var N=["Tunde","Amaka","Kwame","Thabo","Zainab","Chidi"],s=450+Math.floor(Math.random()*2500),r;
+ if(S.refs.length<4){r={n:N[S.refs.length],spent:0,earned:0};S.refs.push(r)}else r=S.refs[Math.floor(Math.random()*S.refs.length)];
+ var b=Math.round(s*.06);r.spent+=s;r.earned+=b;S.bal+=b;S.tx.unshift({l:"Referral bonus · "+r.n,a:b,d:nowS()});save();toast("+"+money(b)+" referral bonus (6% of "+money(s)+")");render()}
+function render(){
+ var u=S.user,p=u?st.p:(st.p==="auth"?"auth":"land");
+ $("wc").innerHTML=u?'<button class="chip" data-p="wallet" aria-label="Open wallet"><i class="dot"></i>'+money(S.bal)+"</button>":'<div class="flex" style="margin:0"><button class="btn" data-au="login">👤 Log in</button><button class="btn p" data-au="signup">✨ Sign up</button></div>';
+ $("v").innerHTML={land:land,auth:authv,home:home,wallet:wallet,nums:nums,hist:hist,rcpt:rcpt,earn:earn,help:help}[p]();
+ var pn=p==="rcpt"?"hist":p;$("nav").style.display=u?"flex":"none";
+ $("nav").innerHTML=[["home","🏠","Home"],["nums","📱","Numbers"],["wallet","💰","Wallet"],["hist","🕘","History"],["earn","🎁","Earn"],["help","❓","Help"]].map(function(b){return'<button class="'+(pn===b[0]?"on":"")+'" data-p="'+b[0]+'"><span>'+b[1]+"</span>"+b[2]+"</button>"}).join("");
+ var c=$("chat");if(c)c.scrollTop=c.scrollHeight}
+/* live chat widget (automated replies; humans answer on WhatsApp) */
+var ag=document.createElement("div");
+ag.innerHTML='<div class="tz" id="tz" style="display:none">Hi 👋 Need help? Chat with us</div><button class="fab" data-x="agent" aria-label="Open live chat">💬</button><div class="ap" id="agp"><div class="ah"><div class="ic" style="background:linear-gradient(135deg,var(--g1),var(--g2));color:#03140c;font-weight:900">E</div><div style="flex:1"><b>EKPO Support</b><br><small style="color:var(--g1)">● Online now</small></div><button class="btn" data-x="agclose" style="padding:6px 12px" aria-label="Close chat">✕</button></div><div class="am" id="am"></div><div class="aq" id="aq"></div><div class="af"><input id="ai" placeholder="Type your question"><button class="btn p" data-x="agsend" style="flex:0 0 auto">Send</button></div><div style="padding:0 10px 6px"><a class="btn" style="display:block;text-align:center;text-decoration:none;color:#25D366" target="_blank" rel="noopener" href="'+WA+'">💬 Talk to a person on WhatsApp</a></div><div style="padding:0 12px 10px;font-size:11px;color:var(--mut)">Replies here are automated. People answer on WhatsApp.</div></div>';
+document.body.appendChild(ag);
+$("aq").innerHTML=["Code didn’t arrive","Prices","Refunds","Earn 6%"].map(function(q){return'<button data-x="agq">'+q+"</button>"}).join("");
+var AM=[];
+function say(t,me){AM.push({t:t,me:me});$("am").innerHTML=AM.map(function(m){return'<div class="bub'+(m.me?" me":"")+'">'+esc(m.t)+"</div>"}).join("");$("am").scrollTop=1e9}
+function bot(q){q=q.toLowerCase();
+ if(/human|agent|person|whatsapp|call|speak/.test(q))return"Tap the WhatsApp button below and our support team will reply.";
+ if(/code|otp|arriv|receiv|sms/.test(q))return"If no code arrives, you’re refunded to your wallet automatically. Make sure you chose the same app you’re verifying, and check History for your receipt.";
+ if(/refund|wallet|deposit|fund|money/.test(q))return"Deposit from the Wallet tab and it’s added instantly. Refunds for undelivered codes also land in your wallet.";
+ if(/price|cost|how much|cheap/.test(q))return"OTP numbers run about "+money(450)+" to "+money(650)+", emails from "+money(250)+", and rentals are the provider price plus "+money(400)+". Used numbers can be re-requested at half price.";
+ if(/email|mail/.test(q))return"Choose Email on Home, pick the app and an email country (Regular, USA or Brazil). It works for apps that accept email sign-up, such as Instagram, Snapchat, TikTok and Facebook.";
+ if(/refer|earn|commission|invite|6/.test(q))return"Open the Earn tab, copy your link and share it. You earn 6% of everything people you invite spend.";
+ return"Thanks for your message. I couldn’t fully answer that, so tap the WhatsApp button below and a person will help you."}
+function ask(q){say(q,1);setTimeout(function(){say(bot(q))},700)}
+document.addEventListener("click",function(e){var t=e.target.closest("[data-x]");if(!t)return;var x=t.dataset.x;
+ if(x==="agent"){$("tz").style.display="none";$("agp").classList.toggle("on");if(!AM.length)say("Hi! I’m the EKPO support assistant. What do you need help with?")}
+ else if(x==="agclose")$("agp").classList.remove("on");
+ else if(x==="agsend"){var i=$("ai"),v=i.value.trim();if(v){i.value="";ask(v)}}
+ else if(x==="agq")ask(t.textContent);
+ else if(x==="simref")simref()});
+document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.id==="ai"){var v=e.target.value.trim();if(v){e.target.value="";ask(v)}}});
+setTimeout(function(){if(!$("agp").classList.contains("on"))$("tz").style.display="block"},2500);
+setTimeout(function(){$("tz").style.display="none"},12000);
+
+document.addEventListener("change",function(e){if(e.target.id==="cur"){st.cur=e.target.value;render()}});
+render();
+</script></body></html>
