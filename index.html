@@ -401,6 +401,10 @@ auth=function(a){
 wallet=function(){return'<h1>Wallet</h1><div class="bal"><small>Available balance</small><div>'+money(S.bal)+'</div></div><h2>Add money</h2><div class="row"><div class="ic">💳</div><div><b>Deposits open soon</b><small>Pay by card or bank transfer with Paystack. We are switching this on next.</small></div></div>'};
 pay=function(){toast("Purchases open soon. Deposits go live first.");return false};
 
+/* ===== masked number preview: real number is revealed only after payment ===== */
+var _av=avail;avail=function(ci,em){if(em)return _av(ci,em);return[NUMS[ci][2]+" ••• ••• ••••"]};
+var _hm=home;home=function(){var h=_hm();if(st.t!=="email"){h=h.replace("<h2>Available now</h2>","<h2>Your number</h2>").replace('<p class="note">Codes work only','<p class="note">🔒 The full number stays hidden until you pay. It then appears on your Numbers page.</p><p class="note">Codes work only')}return h};
+
 document.addEventListener("change",function(e){if(e.target.id==="cur"){st.cur=e.target.value;render()}});
 render();
 </script></body></html>
