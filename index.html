@@ -78,6 +78,12 @@ header .logo{font-size:clamp(15px,4.6vw,20px);white-space:nowrap}
 .pill button.on{color:#03140c}
 .pill::before{content:"";position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:99px;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 0 20px rgba(25,245,160,.6);transform:translateX(100%);transition:transform .35s cubic-bezier(.4,1.4,.5,1)}
 .pill[data-s="0"]::before{transform:none}.pill[data-s="1"]::before{transform:translateX(100%)}
+.it{position:relative}
+.g:has(.it.on) .it:not(.on){opacity:.5;transform:scale(.97)}
+.it.on{background:linear-gradient(135deg,rgba(25,245,160,.42),rgba(0,200,255,.34));border-color:#fff;box-shadow:0 0 0 2px var(--g1),0 0 30px rgba(25,245,160,.85),0 0 70px rgba(0,200,255,.45);transform:scale(1.06);z-index:1;animation:sel 1.6s ease-in-out infinite alternate}
+.it.on::after{content:"✓";position:absolute;top:-9px;right:-9px;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));color:#03140c;font-weight:900;display:grid;place-items:center;box-shadow:0 0 16px var(--g1)}
+.it.on small{color:#eafff6}.it.on .pr{color:#fff;text-shadow:0 0 12px var(--g1)}
+@keyframes sel{from{box-shadow:0 0 0 2px var(--g1),0 0 22px rgba(25,245,160,.7),0 0 50px rgba(0,200,255,.3)}to{box-shadow:0 0 0 3px #fff,0 0 42px rgba(25,245,160,1),0 0 90px rgba(0,200,255,.6)}}
 </style></head><body>
 <div class="w"><header><div class="logo">EKPO<b>.VIRTUAL</b></div><div id="wc"></div></header><main id="v"></main></div>
 <nav id="nav"></nav><div id="toast"></div>
@@ -402,8 +408,8 @@ wallet=function(){return'<h1>Wallet</h1><div class="bal"><small>Available balanc
 pay=function(){toast("Purchases open soon. Deposits go live first.");return false};
 
 /* ===== masked number preview: real number is revealed only after payment ===== */
-var _av=avail;avail=function(ci,em){if(em)return _av(ci,em);return[NUMS[ci][2]+" ••• ••• ••••"]};
-var _hm=home;home=function(){var h=_hm();if(st.t!=="email"){h=h.replace("<h2>Available now</h2>","<h2>Your number</h2>").replace('<p class="note">Codes work only','<p class="note">🔒 The full number stays hidden until you pay. It then appears on your Numbers page.</p><p class="note">Codes work only')}return h};
+var _av=avail;avail=function(ci,em){if(em)return _av(ci,em);var m=NUMS[ci][2]+" ••• ••• ••••",a=[];for(var i=0;i<15;i++)a.push(m);return a};
+var _hm=home;home=function(){var h=_hm();if(st.t!=="email"){h=h.replace("<h2>Available now</h2>","<h2>Your number</h2>").replace('<p class="note">Codes work only','<p class="note">🔒 The full number stays hidden until you pay. You get a fresh number from our stock, and it appears on your Numbers page.</p><p class="note">Codes work only')}return h};
 
 document.addEventListener("change",function(e){if(e.target.id==="cur"){st.cur=e.target.value;render()}});
 render();
